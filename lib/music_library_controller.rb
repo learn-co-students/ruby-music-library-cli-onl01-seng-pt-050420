@@ -19,9 +19,28 @@ class MusicLibraryController
     puts "What would you like to do?"
 
     input = gets
-    until input == 'exit'
+
+    case input
+    when 'list songs'
+      list_songs
+    when 'list artists'
+      list_artists
+    when 'list genres'
+      list_genres
+    when 'list artist'
+      list_songs_by_artist
+    when 'list genre'
+      list_songs_by_genre
+    when 'exit'
       exit
+    else
+      "Sorry. There is no input selection called #{input}."
     end
+
+  end
+
+  def list_songs
+
   end
 
 end
