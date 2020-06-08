@@ -3,6 +3,8 @@
 
 class Genre
 
+  extend Concerns::Findable
+
   #class variables
   @@all = []
 
@@ -22,16 +24,21 @@ class Genre
   end
 
   #attributes
-  attr_accessor :name
+  attr_accessor :name, :songs
 
 
   #instance methods
   def initialize(name) #hook method representing self
     @name = name
+    @songs = []
   end
 
   def save
     @@all << self
+  end
+
+  def artists
+    songs.map { |song| song.artist  }.uniq
   end
 
 end
