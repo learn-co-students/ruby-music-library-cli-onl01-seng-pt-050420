@@ -2,6 +2,20 @@ require 'bundler'
 Bundler.require
 
 module Concerns
+    module Findable
+        def find_by_name(name)
+            all.find {|a| a.name == name}
+        end
+    
+        def find_or_create_by_name(name)
+            found = find_by_name(name)
+            if found == nil
+                create(name)
+            else
+                found
+            end
+        end 
+    end
 end
 
 require_all 'lib'
