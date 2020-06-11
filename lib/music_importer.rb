@@ -1,22 +1,16 @@
 class MusicImporter
-    attr_accessor :path
+    attr_accessor :path, :mp3_files
 
     def initialize(file_path)
         @path = file_path
-        @mp3_files = Dir.entries(@path)
+        @mp3_files = Dir.glob("#{@path}/*.mp3").map {|f| f.gsub("#{@path}/", "")}
     end
 
     def files
-        @mp3_files.select {|f| f.length > 3} 
+        @mp3_files.each {|s| s.gsub(".mp3/""")}
     end
 
     def import
-        @mp3_files.each do |mp3_file|
-            if mp3_file.length > 3
-                Song.create_from_filename(mp3_file)
-            end
-        end
+        files.each {|s| Song.create_from_filename(s)}
     end
-
-
 end

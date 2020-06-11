@@ -1,9 +1,8 @@
-require 'pry'
-
 class Song
 
     attr_accessor :name, :song
     attr_reader :artist, :genre
+    extend Concerns::Findable
 
     @@all = []
 
@@ -33,20 +32,6 @@ class Song
         song
     end
 
-    def self.find_by_name(name)
-        found = self.all.select {|s| s.name == name}
-        found[0]
-    end
-
-    def self.find_or_create_by_name(name)
-        found = self.find_by_name(name)
-        if found == nil
-            self.create(name)
-        else
-            found
-        end
-    end 
-
     def artist=(artist)
         @artist = artist
         @artist.songs << self unless @artist.songs.include?(self)
@@ -59,7 +44,6 @@ class Song
     end
 
     def self.new_from_filename(filename)
-        #["Thundercat", "For Love I Come", "dance.mp3"]
         new_song = filename.split(" - ")
         song = self.find_or_create_by_name(new_song[1])
         song.genre = Genre.find_or_create_by_name(new_song[2][0...-4])
@@ -69,8 +53,7 @@ class Song
     end
 
     def self.create_from_filename(filename)
-        song = self.new_from_filename(filename)
-        song
+        self.new_from_filename(filename).save
     end
 
 
