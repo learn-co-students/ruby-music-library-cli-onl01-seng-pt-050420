@@ -42,6 +42,30 @@ class MusicLibraryController
     end
 
     def list_artists
-        
+        Artist.all.sort{|a, b| a.name <=> b.name}.each_with_index{|v, i| puts "#{i+1}. #{v.name}"}
+    end
+
+    def list_genres
+        Genre.all.sort{|a, b| a.name <=> b.name}.each_with_index{|v, i| puts "#{i+1}. #{v.name}"}
+    end
+
+    def list_songs_by_artist
+        puts "Please enter the name of an artist:"
+        artist = gets.strip
+        Song.all.sort{|a, b| a.name <=> b.name}.select{|i| i.artist.name == artist}.each_with_index{|v, i| puts "#{i+1}. #{v.name} - #{v.genre.name}"}
+    end
+
+    def list_songs_by_genre
+        puts "Please enter the name of a genre:"
+        genre = gets.strip
+        Song.all.sort{|a, b| a.name <=> b.name}.select{|i| i.genre.name == genre}.each_with_index{|v, i| puts "#{i+1}. #{v.artist.name} - #{v.name}"}
+    end
+
+    def play_song
+        puts "Which song number would you like to play?"
+        number = gets.strip.to_i
+        if number > 0 && number <= Song.all.length
+        Song.all.sort{|a, b| a.name <=> b.name}.each_with_index{|v, i| puts "Playing #{v.name} by #{v.artist.name}" if i == number-1}
+        end
     end
 end # class MusicLibraryController
