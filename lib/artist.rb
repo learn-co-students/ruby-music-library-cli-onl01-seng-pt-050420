@@ -28,10 +28,10 @@ extend Concerns::Findable
         # Song.all.select{|song| song.artist == self}
     end
     def add_song(song)
-        if !song.artist
-            song.artist = self
-            @songs << song unless songs.include?(song)
-        end
+        
+        song.artist = self unless song.artist
+        songs << song unless songs.include?(song)
+        
                 
     end
     def genres
