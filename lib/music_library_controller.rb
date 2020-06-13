@@ -88,10 +88,4 @@ class MusicLibraryController
   def self.list_songs()
 
   end
-
-  # def songs
-  #   Song.all.each.with_index(1) do |song, idx|
-  #     puts "#{idx}. #{song}"
-  #   end
-  # end
 end
