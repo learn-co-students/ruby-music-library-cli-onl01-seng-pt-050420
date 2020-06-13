@@ -1,7 +1,6 @@
 class Song
-    attr_accessor :name, :genre
-     attr_reader :artist
-
+    attr_accessor :name, :artist, :genre
+     
     @@all =[]
 
     def self.all
@@ -23,6 +22,21 @@ class Song
         self.find_by_name(name)
 
      end
+    end
+    def self.new_from_filename(filename)
+        artist_name = filename.split("-")[0].strip
+        song_name = filename.split("-")[1].strip
+        genre_name = filename.split("-")[2].gsub(".mp3", "").strip
+        artist = Artist.find_or_create_by_name(artist_name)
+        genre = Genre.find_or_create_by_name(genre_name)
+        self.new(song_name,artist, genre)
+        
+        
+    end
+    def self.create_from_filename(filename)
+        if self.new_from_filename(filename) == true
+        self.create(filename)
+        end
     end
     
     def initialize(name, artist=nil, genre = nil)
