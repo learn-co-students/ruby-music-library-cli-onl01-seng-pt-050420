@@ -30,7 +30,7 @@ extend Concerns::Findable
     def add_song(song)
         if !song.artist
             song.artist = self
-            @songs << song
+            @songs << song unless songs.include?(song)
         end
                 
     end
