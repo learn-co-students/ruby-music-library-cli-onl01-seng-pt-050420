@@ -1,0 +1,14 @@
+
+[1mFrom:[0m /home/dblanton/Development/code/ruby-music-library-cli-onl01-seng-pt-050420/lib/mlc.rb @ line 35 MusicLibraryController#list_songs:
+
+    [1;34m32[0m: [32mdef[0m [1;34mlist_songs[0m
+    [1;34m33[0m:     list =[]
+    [1;34m34[0m:   list <<   [1;34;4mSong[0m.all.sort {|a, b| a.name <=> b.name}
+ => [1;34m35[0m:   binding.pry
+    [1;34m36[0m: 
+    [1;34m37[0m: 
+    [1;34m38[0m: 
+    [1;34m39[0m:     
+    [1;34m40[0m: [1;34m#   [0m
+    [1;34m41[0m: [32mend[0m
+
