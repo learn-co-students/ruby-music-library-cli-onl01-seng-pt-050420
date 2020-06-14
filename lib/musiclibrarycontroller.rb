@@ -19,15 +19,26 @@ class MusicLibraryController
 
     user_input = gets.strip
 
-    # if user_input == ""
-    # elsif
-    # elsif
-    # elsif
-    # end
-    
-    if user_input != "exit"
-      call
+    case user_input
+    when "list songs"
+      self.list_songs
+    when "list artists"
+      self.list_artists
+    when "list genres"
+      self.list_genres
+    when "list artist"
+      self.list_songs_by_artist
+    when "list genre"
+      self.list_songs_by_genre
+    when "play song"
+      self.play_song
+    else
+      if user_input != "exit"
+        call
+      end
     end
+    
+    
   end
 
   def list_songs
@@ -66,11 +77,9 @@ class MusicLibraryController
 
   def play_song
     puts "Which song number would you like to play?"
-    sorted_songs = self.list_songs
     user_input = gets.strip.to_i
-    binding.pry
-    if user_input >= 1 && user_input < sorted_songs.size
-      selected_song = sorted_songs[user_input - 1]
+    if user_input >= 1 && user_input < Song.all.size
+      selected_song = Song.all.sort{|a,b| a.name <=> b.name}[user_input - 1]
       puts "Playing #{selected_song.name} by #{selected_song.artist.name}"
     else
       "0"
