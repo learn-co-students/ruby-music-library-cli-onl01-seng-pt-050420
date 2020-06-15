@@ -33,24 +33,15 @@ class Artist
   end 
 
   def add_song(song)
-    if song.arist == nil
-        song.artist = self 
-    else
-        nil
-    end 
+    song.artist = self unless song.artist   #we use a ..clause, if the value is not nil, it will be true. #unless is a 'guard clause'
+    #  if song.artist == nil       #if the song being passed in does not have an artist then
+    #     song.artist = self      # assign current artist
+    # @song << self     
+    #  else
+    #     return song.artist      #otherwise don't do anything and simply return the artist that arleady assigned to the song
+    #  end 
+    songs << song unless songs.include?(song)
   end
 
-# def add_song(song)
-#     if song.artist == nil
-#       song.artist = self
-#     else
-#       nil
-#     end
-#     if @songs.include?(song)
-#       nil
-#     else
-#       @songs << song
-#     end
-#     song
-#   end
+    
 end 
