@@ -1,5 +1,6 @@
 class Artist
     attr_accessor :name, :songs
+    attr_reader :genres
    
 
     @@all = []
@@ -7,6 +8,7 @@ class Artist
         @name = name 
         @@all = [] 
         @songs = []      #artist has many song
+        
        
     end 
 
@@ -43,5 +45,9 @@ class Artist
     songs << song unless songs.include?(song)
   end
 
+    def genres
+        # songs.collect(&:genre).uniq  #is the same as the code below
+        songs.collect{|song| song.genre}.uniq
+    end 
     
 end 
