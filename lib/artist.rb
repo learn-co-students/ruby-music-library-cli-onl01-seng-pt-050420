@@ -1,4 +1,7 @@
 class Artist
+    extend Concerns::Findable
+        
+    
     attr_accessor :name, :songs
     attr_reader :genres
    
@@ -6,7 +9,7 @@ class Artist
     @@all = []
     def initialize(name)
         @name = name 
-        @@all = [] 
+        @save   #we always want to save or @@all << self in initialize so we are sure to add them to @@all
         @songs = []      #artist has many song
         
        
@@ -43,6 +46,7 @@ class Artist
     #     return song.artist      #otherwise don't do anything and simply return the artist that arleady assigned to the song
     #  end 
     songs << song unless songs.include?(song)
+    
   end
 
     def genres

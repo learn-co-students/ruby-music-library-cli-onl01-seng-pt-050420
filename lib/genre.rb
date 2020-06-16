@@ -1,11 +1,12 @@
 class Genre
+    extend Concerns::Findable
     attr_accessor :name, :songs
 
 
     @@all = []
     def initialize(name)
         @name = name 
-        @@all = [] 
+        @save       #we always want to save or @@all << self in initialize so we are sure to add them to @@all
         @songs = []
         
        
