@@ -2,11 +2,13 @@ class Genre
   extend Concerns::Findable
   attr_accessor :name 
   attr_reader :songs
+
   @@all = []
   
   def initialize(name)
     @name = name
     @songs = []
+    save
   end
   
   def save
@@ -31,6 +33,14 @@ class Genre
   #   #@songs
   #   Song.all {|song| song.genre == self}
   # end
+
+  # end
+  
+  def songs
+    #@songs
+    Song.all {|song| song.genre == self}
+  end
+
   
   def artists
     #song_list = Song.all {|song| song.genre == self}
